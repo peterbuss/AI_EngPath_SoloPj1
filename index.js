@@ -34,6 +34,7 @@ let eventHandler = function(e) {
 }
 
 console.log("index.js");
+console.log(process.env);
 translateForm.addEventListener("submit", eventHandler);
     
     
@@ -51,6 +52,7 @@ async function callAI(language, text) {
 
     try {
 	console.log("in callai");
+	console.log(process.env);
         const openai = new OpenAI({
 		dangerouslyAllowBrowser: true,
 		apiKey: process.env.OPENAI_API_KEY
