@@ -40,7 +40,9 @@ translateForm.addEventListener("submit", eventHandler);
 const { OPENAI_API_KEY } = process.env;
 
 console.log("The key destructured: ",  OPENAI_API_KEY);
-    
+
+const key = Netlify.env.get('OPENAI_API_KEY') ;
+console.log("Key from Netlify.env.get: ", key);   
     
 async function callAI(language, text) {
     const messages = [
