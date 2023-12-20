@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import Netlify from "netlify";
+
 
 // Solution with function from Netlify -> No better solution than I already have
 exports.handler = async function (event, context) {
@@ -42,8 +42,6 @@ const { OPENAI_API_KEY } = process.env;
 
 console.log("The key destructured: ",  OPENAI_API_KEY);
 
-const key = Netlify.env.get('OPENAI_API_KEY') ;
-console.log("Key from Netlify.env.get: ", key);   
     
 async function callAI(language, text) {
     const messages = [
