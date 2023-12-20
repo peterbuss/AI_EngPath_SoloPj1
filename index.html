@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="index.css">
+        <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Big Shoulders Display' rel='stylesheet'>                
+    </head>
+    <body>
+        <!-- Your HTML here -->
+        <div class="container">
+            <div class="top_image">
+                <img class="world-image" src="./assets/worldmap.png" alt="worldmap">
+                <img class="parrot-image" src="./assets/parrot.png" alt="parrot">
+                <h1 class="polyglott-title">PollyGlott</h1>
+                <p class="sub-title">Perfect translation every time</p>
+            </div>
+            <div class="translator">
+                <div class="top-text">
+                    <img class="original" id="original"
+                        src="./assets/text-to-translate.png" 
+                        alt="finger down">
+                </div>
+                <div class="input-field">
+                    <form id="translateForm">
+                        <textarea class="input-text" id="text-translate" name="text-input">How are you?</textarea>
+                        <fieldset>
+                            <div class="select-language">
+                                <img src="./assets/select-language.png" id="translate-text"
+                                    alt="select language">
+                            </div>
+                            <div class="radio-buttons">
+                                <div class="language-selection">
+                                    <input 
+                                        type="radio"
+                                        id="french"
+                                        name="language"
+                                        value="french"
+                                        onchange="handleChange(this)"
+                                        
+                                    />
+                                    <label htmlFor="french">French</label>
+                                    <img src="./assets/fr-flag.png" alt="french flag">
+                                </div>
+                                <div class="language-selection">
+                                    <input 
+                                        type="radio"
+                                        id="spanish"
+                                        name="employment"
+                                        value="spanish"
+                                        
+                                        onchange="handleChange(this)"
+                                        
+                                    />
+                                    <label htmlFor="spanish">Spanish</label>
+                                    <img src="./assets/sp-flag.png" alt="spanish flag">
+                                </div>
+                                <div class="language-selection">
+                                    <input 
+                                        type="radio"
+                                        id="japanese"
+                                        name="employment"
+                                        value="japanese"
+
+                                        onchange="handleChange(this)"
+                                        
+                                        
+                                    />
+                                    <label htmlFor="japanese">Japanese</label>
+                                    <img class="jpn-flag" src="./assets/jpn-flag.png" alt="japanese flag">
+                                </div>
+                            </div>
+                            <div class="translated-text">
+                            </div>
+                        </fieldset>
+                        <button class="translate-btn">Translate</button>
+                    </form>                    
+                </div>
+            </div>
+        </div>
+        <script src="index.js" type="module"></script>
+        <script type="application/javascript">
+            function handleChange(event) {
+                //console.log(event)
+                const lang = event.id;
+                const french = document.getElementById("french");
+                const spanish = document.getElementById("spanish");
+                const japan = document.getElementById("japan");
+                
+                if(lang!=="french")
+                    french.checked=false;
+                if(lang!=="spanish")
+                    spanish.checked=false;
+                if(lang!=="japanese")
+                    japanese.checked=false;
+            }
+        </script>
+    </body>
+</html>
