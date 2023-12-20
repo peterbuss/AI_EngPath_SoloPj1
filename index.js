@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import Netlify from "netlify";
 
 // Solution with function from Netlify -> No better solution than I already have
 exports.handler = async function (event, context) {
