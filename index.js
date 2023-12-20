@@ -34,8 +34,12 @@ let eventHandler = function(e) {
 }
 
 console.log("index.js");
-console.log(process.env);
+console.log(process.env.OPENAI_API_KEY);
 translateForm.addEventListener("submit", eventHandler);
+
+const { OPENAI_API_KEY } = process.env;
+
+console.log("The key destructured: ",  OPENAI_API_KEY);
     
     
 async function callAI(language, text) {
@@ -52,10 +56,10 @@ async function callAI(language, text) {
 
     try {
 	console.log("in callai");
-	console.log(process.env);
+	console.log(process.env.OPENAI_API_KEY);
         const openai = new OpenAI({
 		dangerouslyAllowBrowser: true,
-		apiKey: process.env.OPENAI_API_KEY
+		apiKey: OPENAI_API_KEY
         })
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
