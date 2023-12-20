@@ -40,9 +40,10 @@ async function callAI(language, text) {
     ]
 
     try {
-		console.log("in callai");
+	console.log("in callai");
         const openai = new OpenAI({
-			apiKey: process.env.OPENAI_API_KEY
+		dangerouslyAllowBrowser: true,
+		apiKey: process.env.OPENAI_API_KEY
         })
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
