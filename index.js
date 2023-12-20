@@ -1,5 +1,15 @@
 import OpenAI from "openai";
 
+// Solution with function from Netlify -> No better solution than I already have
+exports.handler = async function (event, context) {
+  const value = process.env.MY_IMPORTANT_VARIABLE;
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: `Value of MY_IMPORTANT_VARIABLE is ${value}.` }),
+  };  
+};
+
 
 let eventHandler = function(e) {
   e.preventDefault();
