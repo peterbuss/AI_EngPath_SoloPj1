@@ -41,11 +41,11 @@ async function callAI(language, text) {
     const messages = [
         {
             role: 'system',
-            content: `You are a language translator. Translate the given text in english to ${language}`
+            content: `You are a language translator. Translate the given text in english to ${language}`;
         },
         {
             role: 'user',
-            content: text
+            content: text;
         }
     ]
 
@@ -53,11 +53,11 @@ async function callAI(language, text) {
 	console.log("in callai");
         const openai = new OpenAI({
 		dangerouslyAllowBrowser: true,
-		apiKey: process.env.OPENAI_API_KEY
+		apiKey: process.env.OPENAI_API_KEY;
         })
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
-            messages: messages
+            messages: messages;
         })
         console.log(response.choices[0].message.content);
         //document.body.innerText = response.choices[0].message.content
