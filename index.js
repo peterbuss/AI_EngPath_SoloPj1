@@ -39,7 +39,7 @@ console.log(process.env.OPENAI_API_KEY);
 translateForm.addEventListener("submit", eventHandler);
 
 //const { OPENAI_API_KEY } = process.env;
-const OPENAI_API_KEY = import.meta.env.OPENAI_API_KEY as string;
+const OPENAI_API_KEY = import.meta.env.OPENAI_API_KEY;
 
 console.log("The key: ",  OPENAI_API_KEY);
 
@@ -61,7 +61,7 @@ async function callAI(language, text) {
 	console.log(process.env.OPENAI_API_KEY);
         const openai = new OpenAI({
 		dangerouslyAllowBrowser: true,
-		apiKey: import.meta.env.OPENAI_API_KEY as string
+		apiKey: import.meta.env.OPENAI_API_KEY
         })
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
