@@ -1,17 +1,5 @@
 import OpenAI from "openai";
 
-
-// Solution with function from Netlify -> No better solution than I already have
-exports.handler = async function (event, context) {
-  const value = process.env.MY_IMPORTANT_VARIABLE;
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: `Value of MY_IMPORTANT_VARIABLE is ${value}.` }),
-  };  
-};
-
-
 let eventHandler = function(e) {
   e.preventDefault();
   
@@ -38,8 +26,8 @@ console.log("index.js");
 console.log(process.env.OPENAI_API_KEY);
 translateForm.addEventListener("submit", eventHandler);
 
-//const { OPENAI_API_KEY } = process.env;
-const OPENAI_API_KEY = import.meta.env.OPENAI_API_KEY;
+//const { OPENAI_API_KEY } = process.env.OPENAI_API_KEY;
+const OPENAI_API_KEY = Netlify.env.get("OPENAI_API_KEY");
 
 console.log("The key: ",  OPENAI_API_KEY);
 
@@ -61,7 +49,7 @@ async function callAI(language, text) {
 	console.log(process.env.OPENAI_API_KEY);
         const openai = new OpenAI({
 		dangerouslyAllowBrowser: true,
-		apiKey: import.meta.env.OPENAI_API_KEY
+		apiKey: OPENAI_API_KEY
         })
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
