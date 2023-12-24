@@ -4,7 +4,7 @@ let lang=""
 let text=""
 let KEY=0
 
-let eventHandler = function(e) {
+exports.eventHandler = function(e) {
   e.preventDefault();
   
   //console.log("translate form")
