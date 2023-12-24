@@ -1,4 +1,6 @@
 import OpenAI from "openai";
+import type { Context } from "@netlify/edge-functions";
+
 
 let lang=""
 let text=""
@@ -22,10 +24,10 @@ exports.eventHandler = function(e) {
   //console.log(text)
 
   // try to get the api key here in the handler
-  KEY = process.env.OPENAI_API_KEY;
+  //KEY = process.env.OPENAI_API_KEY;
+  KEY = Context.Netlify.env.get("OPENAI_API_KEY");
   
-  //callAI(lang, text, KEY);
-  return(lang, text, KEY);
+  callAI(lang, text, KEY);
 
 }
 
@@ -94,7 +96,6 @@ async function callAI(language, text, key) {
 }
 
 //callAI()
-callAI(lang, text, KEY);
 
 // not used
 function renderWarning(obj) {
