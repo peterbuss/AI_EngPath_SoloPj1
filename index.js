@@ -6,7 +6,7 @@ let lang=""
 let text=""
 let KEY=0
 
-exports.eventHandler = function(e) {
+let eventHandler = function(e) {
   e.preventDefault();
   
   //console.log("translate form")
@@ -58,7 +58,7 @@ async function callAI(language, text, key) {
 
     try {
 	console.log("in callai");
-	console.log(process.env.OPENAI_API_KEY);
+	
         const openai = new OpenAI({
 		dangerouslyAllowBrowser: true,
 		apiKey: key
