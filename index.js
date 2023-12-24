@@ -17,22 +17,21 @@ let eventHandler = function(e) {
   
   //console.log(lang)
   //console.log(text)
+
+  // try to get the api key here in the handler
+  const KEY = process.env.OPENAI_API_KEY;
   
-  callAI(lang, text);
+  callAI(lang, text, KEY);
 
 }
 
 console.log("index.js");
-console.log(process.env.OPENAI_API_KEY);
+
 translateForm.addEventListener("submit", eventHandler);
 
 //const { OPENAI_API_KEY } = process.env.OPENAI_API_KEY;
-const OPENAI_API_KEY = Netlify.env.get("OPENAI_API_KEY");
 
-console.log("The key: ",  OPENAI_API_KEY);
-
-    
-async function callAI(language, text) {
+async function callAI(language, text, key) {
     const messages = [
         {
             role: 'system',
@@ -49,7 +48,7 @@ async function callAI(language, text) {
 	console.log(process.env.OPENAI_API_KEY);
         const openai = new OpenAI({
 		dangerouslyAllowBrowser: true,
-		apiKey: OPENAI_API_KEY
+		apiKey: key
         })
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
