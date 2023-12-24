@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { Context } from "netlify/edge-functions";
+//import { Context } from "netlify/edge-functions";
 
 
 let lang=""
@@ -25,7 +25,8 @@ exports.eventHandler = function(e) {
 
   // try to get the api key here in the handler
   //KEY = process.env.OPENAI_API_KEY;
-  KEY = Context.Netlify.env.get("OPENAI_API_KEY");
+  KEY = import.meta.env.OPENAI_API_KEY;
+  //KEY = Context.Netlify.env.get("OPENAI_API_KEY");
   
   callAI(lang, text, KEY);
 
