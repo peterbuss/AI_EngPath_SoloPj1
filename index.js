@@ -1,11 +1,14 @@
 import OpenAI from "openai";
 
+let lang=""
+let text=""
+let KEY=0
+
 let eventHandler = function(e) {
   e.preventDefault();
   
   //console.log("translate form")
 
-  let lang = ""  ;
   if(document.getElementById('french').checked)
     lang="french";
     else if(document.getElementById('spanish').checked)
@@ -13,15 +16,16 @@ let eventHandler = function(e) {
     else    
         lang='japanese';
 
-  const text = document.getElementById('text-translate').value;
+  text = document.getElementById('text-translate').value;
   
   //console.log(lang)
   //console.log(text)
 
   // try to get the api key here in the handler
-  const KEY = process.env.OPENAI_API_KEY;
+  KEY = process.env.OPENAI_API_KEY;
   
-  callAI(lang, text, KEY);
+  //callAI(lang, text, KEY);
+  return(lang, text, KEY);
 
 }
 
@@ -32,6 +36,12 @@ translateForm.addEventListener("submit", eventHandler);
 //const { OPENAI_API_KEY } = process.env.OPENAI_API_KEY;
 
 async function callAI(language, text, key) {
+
+    if(key===0) {
+	console.log("key not defined");
+	return;
+    }
+	
     const messages = [
         {
             role: 'system',
@@ -84,6 +94,7 @@ async function callAI(language, text, key) {
 }
 
 //callAI()
+callAI(lang, text, KEY);
 
 // not used
 function renderWarning(obj) {
