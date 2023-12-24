@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { Context } from "@netlify/edge-functions";
+import { Context } from "netlify/edge-functions";
 
 
 let lang=""
