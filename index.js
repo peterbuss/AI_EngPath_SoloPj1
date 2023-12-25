@@ -4,7 +4,7 @@ import OpenAI from "openai";
 
 let lang=""
 let text=""
-let KEY=0
+let KEY="";
 
 let eventHandler = function(e) {
   e.preventDefault();
@@ -25,7 +25,7 @@ let eventHandler = function(e) {
 
   // try to get the api key here in the handler
   //KEY = process.env.OPENAI_API_KEY;
-  KEY = import.meta.env.OPENAI_API_KEY;
+  KEY = import.meta.env.OPENAI_API_KEY as string ;
   console.log("KEY:", KEY);
   //KEY = Context.Netlify.env.get("OPENAI_API_KEY");
   
