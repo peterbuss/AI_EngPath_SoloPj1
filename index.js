@@ -26,7 +26,7 @@ let eventHandler = function(e) {
   // try to get the api key here in the handler
   //KEY = process.env.OPENAI_API_KEY;
   KEY = import.meta.env.VITE_OPENAI_API_KEY ;
-  console.log("KEY:", KEY);
+  //console.log("KEY:", KEY); don't expose key
   //KEY = Context.Netlify.env.get("OPENAI_API_KEY");
   
   callAI(lang, text, KEY);
