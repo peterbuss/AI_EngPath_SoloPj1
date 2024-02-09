@@ -92,11 +92,14 @@ async function callAI(language, text, key) {
                         </div>
         `;
         
-        const text_display = document.getElementsByClassName('translated-text');
-
         input_field.innerHTML = new_html;
-        
+                
+        const text_display = document.querySelector('.translated-text');
+        text_display.style.display = "block";
+
         const eventHdl = document.querySelector('.translate-btn');
+
+        eventHdl.style.width= "90%";
         
         eventHdl.addEventListener('click', function() {
             window.location.reload();
