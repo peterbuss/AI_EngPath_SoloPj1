@@ -149,6 +149,10 @@ fieldset {
     margin: 0 auto;
 }
 
+.translated-text p {
+    margin-top: 0.2rem;
+}
+
 .output-text {
     color: #106dd6;
     font-size: 20px;
