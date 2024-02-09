@@ -76,7 +76,7 @@ async function callAI(language, text, key) {
         const input_field = document.querySelector(".translator") ;
 
         const new_html = `<div class="top-text">
-                            <img class="original" id="original" src="./assets/original-text.png" alt="finger down">
+                            <img class="original" id="original" src="./assets/text-to-translate.png" alt="finger down">
                           </div>
                          <div class="input-field">
                             <textarea class="input-text" id="text-translate" name="text-input">${text}</textarea>
