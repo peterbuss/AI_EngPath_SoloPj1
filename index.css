@@ -136,6 +136,7 @@ fieldset {
 }
 
 .translated-text {
+    display: none;
     font-size: 20px;
     font-weight: semibold;
     width: 317px;
