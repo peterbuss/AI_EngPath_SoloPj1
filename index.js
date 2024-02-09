@@ -68,29 +68,41 @@ async function callAI(language, text, key) {
             model: 'gpt-3.5-turbo',
             messages: messages
         });
+
         console.log(response.choices[0].message.content);
-        //document.body.innerText = response.choices[0].message.content
-        document.getElementById('original').src = "./assets/original-text.png";
-        document.getElementById('translate-text').src = "./assets/your-translation.png";
-        document.getElementsByClassName('radio-buttons')[0].style.display = "none";
+
+        const translation = response.choices[0].message.content;
+
+        const input_field = document.querySelector(".translator") ;
+
+        const new_html = `<div class="top-text">
+                            <img class="original" id="original" src="./assets/original-text.png" alt="finger down">
+                          </div>
+                         <div class="input-field">
+                            <textarea class="input-text" id="text-translate" name="text-input">${text}</textarea>
+                         </div>
+                         <div class="select-language">
+                            <img src="./assets/your-translation.png" id="translate-text" alt="select language">
+                        </div>
+                        <div class="translated-text">
+                            <p>${translation}</p>
+                        </div>
+                        <div>
+                            <button class="translate-btn">Start Over</button>
+                        </div>
+        `;
+        
         const text_display = document.getElementsByClassName('translated-text');
-        //console.log(text_display)
-        text_display[0].style.display = "block";
-        text_display[0].innerText = response.choices[0].message.content;
-        const btn = document.getElementsByClassName('translate-btn')[0];
-        btn.innerText = "Start Over";
+
+        input_field.innerHTML = new_html;
         
-        //btn.style.width = "90%"
-        btn.style.marginInline = "0.5rem";
-        document.getElementsByClassName('input-text')[0].style.justifyContent = "center";
+        const eventHdl = document.querySelector('.translate-btn');
         
-        const eventHdl = document.getElementsByClassName('translate-btn')[0];
-        
-        translateForm.removeEventListener("submit", eventHandler);
         eventHdl.addEventListener('click', function() {
             window.location.reload();
         })
 
+	    
     } catch (err) {
         console.log('Error:', err);
         //loadingArea.innerText = 'Unable to access AI. Please refresh and try again'
