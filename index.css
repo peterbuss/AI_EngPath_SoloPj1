@@ -149,3 +149,10 @@ fieldset {
     margin: 0 auto;
 }
 
+.output-text {
+    color: #106dd6;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
