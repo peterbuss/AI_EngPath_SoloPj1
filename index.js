@@ -25,7 +25,7 @@ let eventHandler = function(e) {
 
   // try to get the api key here in the handler
   //KEY = process.env.OPENAI_API_KEY;
-  KEY = import.meta.env.VITE_OPENAI_API_KEY ;
+  KEY = "" ;  // import.meta.env.VITE_OPENAI_API_KEY ;
   //console.log("KEY:", KEY); don't expose key
   //KEY = Context.Netlify.env.get("OPENAI_API_KEY");
   
@@ -40,6 +40,20 @@ translateForm.addEventListener("submit", eventHandler);
 //const { OPENAI_API_KEY } = process.env.OPENAI_API_KEY;
 
 async function callAI(language, text, key) {
+
+    const url = '/.netlify/functions/fetchAI';
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'content-type': 'text/plain',
+        },
+        body: JSON.stringify(input)
+    });
+    const data = await response.json();
+    console.log(data);
+
+    return
 
     if(key===0) {
 	console.log("key not defined");
