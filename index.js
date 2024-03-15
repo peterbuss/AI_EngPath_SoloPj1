@@ -48,7 +48,7 @@ async function callAI(language, text, key) {
         headers: {
             'content-type': 'text/plain',
         },
-        body: JSON.stringify(input)
+        body: JSON.stringify(text)
     });
     const data = await response.json();
     console.log(data);
