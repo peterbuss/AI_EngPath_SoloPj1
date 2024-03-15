@@ -1,4 +1,3 @@
-import OpenAI from "openai";
 //import { Context } from "netlify/edge-functions";
 
 
@@ -19,17 +18,8 @@ let eventHandler = function(e) {
         lang='japanese';
 
   text = document.getElementById('text-translate').value;
-  
-  //console.log(lang)
-  //console.log(text)
-
-  // try to get the api key here in the handler
-  //KEY = process.env.OPENAI_API_KEY;
-  KEY = "" ;  // import.meta.env.VITE_OPENAI_API_KEY ;
-  //console.log("KEY:", KEY); don't expose key
-  //KEY = Context.Netlify.env.get("OPENAI_API_KEY");
-  
-  callAI(lang, text, KEY);
+    
+  callAI(lang, text);
 
 }
 
@@ -39,27 +29,8 @@ translateForm.addEventListener("submit", eventHandler);
 
 //const { OPENAI_API_KEY } = process.env.OPENAI_API_KEY;
 
-async function callAI(language, text, key) {
-
-    const url = '/.netlify/functions/fetchAI';
-
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'content-type': 'text/plain',
-        },
-        body: JSON.stringify(text)
-    });
-    const data = await response.json();
-    console.log(data);
-
-    return
-
-    if(key===0) {
-	console.log("key not defined");
-	return;
-    }
-	
+async function callAI(language, text) {
+    
     const messages = [
         {
             role: 'system',
@@ -70,18 +41,22 @@ async function callAI(language, text, key) {
             content: text
         }
     ];
+    
+    const url = '/.netlify/functions/fetchAI';
 
     try {
-	console.log("in callai");
-	
-        const openai = new OpenAI({
-		dangerouslyAllowBrowser: true,
-		apiKey: key
-        })
-        const response = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo',
-            messages: messages
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'text/plain',
+            },
+            body: JSON.stringify(messages)
         });
+
+        const data = await response.json();
+        console.log(data);
+
+        return
 
         console.log(response.choices[0].message.content);
 
@@ -124,15 +99,5 @@ async function callAI(language, text, key) {
         console.log('Error:', err);
         //loadingArea.innerText = 'Unable to access AI. Please refresh and try again'
     }
-}
-
-//callAI()
-
-// not used
-function renderWarning(obj) {
-  const keys = Object.keys(obj);
-  const filtered = keys.filter((key) => obj[key]);
-  document.body.innerText =
-    `Your response has been flagged for the following reasons: ${filtered.join(", ")}.`;
 }
 
