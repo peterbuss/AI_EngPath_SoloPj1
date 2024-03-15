@@ -41,7 +41,7 @@ async function callAI(language, text) {
             content: text
         }
     ];
-    
+
     const url = '/.netlify/functions/fetchAI';
 
     try {
@@ -56,11 +56,10 @@ async function callAI(language, text) {
         const data = await response.json();
         console.log(data);
 
-        return
 
-        console.log(response.choices[0].message.content);
+        console.log(data.reply.choices[0].message.content);
 
-        const translation = response.choices[0].message.content;
+        const translation = data.reply.choices[0].message.content;
 
         const input_field = document.querySelector(".translator") ;
 
