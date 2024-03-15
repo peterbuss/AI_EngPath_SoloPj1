@@ -10,3 +10,6 @@ node_modules/
 backup
 
 
+
+# Local Netlify folder
+.netlify
